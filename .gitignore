@@ -30,3 +30,25 @@
 *.exe
 *.out
 *.app
+
+# Anjuta
+aclocal.m4
+autom4te.cache/
+compile
+config.h
+config.guess
+config.status
+config.sub
+configure
+depcomp
+install-sh
+libtool
+ltmain.sh
+Makefile
+missing
+stamp-h*
+
+.anjuta/
+.anjuta*
+.deps
+Debug/
