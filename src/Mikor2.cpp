@@ -6,8 +6,12 @@
 #include <cassert>
 #include <stdlib.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 #include <ctime>
 #include <cmath>
+#include <vector>
+
 
 #include "Mikor2.h"
 
@@ -23,23 +27,42 @@ Mikor2::Mikor2 ( std::size_t K ) : vecX(K), vecAX(K), vecBX(K)
 	dd = K;
 	pp = 1;
 	qq = 1;
-
-	cout << mOut << "K: " << numK << "\tN: " << numN << endl;
-	cout << mOut << "d: " << dd << endl;
-	cout << mOut << "p: " << pp << endl;
-	cout << mOut << "q: " << qq << endl;
 }
 
 void Mikor2::printParameters ()
 {
 	cout << mOut << "Parameters" << endl;
-	cout << mOS << "K    = " << numK << endl;
+	cout << mOS << "K  = " << numK << endl;
+	cout << mOS << "d  = " << dd << endl;
+	cout << mOS << "p  = " << pp << endl;
+	cout << mOS << "q  = " << qq << endl;
 }
 
 
-int Mikor2::Calculate ()
+void Mikor2::firstOptimalA ()
 {
-	this->printParameters();
+	int upRange = (pp - 1)/2;
+	int optimalA = 0;
+	double optimalVal = 1e+18;
+
+	cout << mOS << upRange << endl;
+
+	cout << mOS << "optimal a    = " << optimalA << endl;
+	cout << mOS << "optimal H(a) = " << optimalVal << endl;
+	/*  up_ran = int((self.p_prime - 1)/2)
+        optimal_a = 0
+        optimal_val = 1e+18
+
+        for i in range(1, up_ran + 1):
+            h_sum = self.h_poly_chet(i)
+            if h_sum < optimal_val:
+                optimal_a = i
+                optimal_val = h_sum
+            if prt != 0 and i % 1000 == 0:
+                print(f'{i}. iteration')
+        self.a_opt = optimal_a
+        self.a_opt_value = optimal_val
+        return optimal_a, optimal_val*/
 }
 
 /**

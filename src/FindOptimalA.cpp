@@ -15,8 +15,8 @@ int main(int argc, char** argv)
 	time ( &rawtime );
 	cout << "\n> Start of program: " << ctime ( &rawtime ) << endl;
 
-	Mikor2 optimal(10);
-	optimal.printParameters();
+	Mikor2 hoch(10);
+	hoch.firstOptimalA();
 
 	//cout << "\nValue with constant: " << myInt.FCNvalue(0)*4.*powf(52.768,3) << endl;
 

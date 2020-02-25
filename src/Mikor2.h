@@ -12,9 +12,9 @@
  * functionality, like the possibility to find optimal numbers.
  */
 
-static const char* mError = "\n> MIKOR: Error: ";
-static const char* mWarning = "\n> MIKOR: Warning: ";
-static const char* mOut = "\n> MIKOR: ";
+static const char* mError = "\n> MIKOR2: Error: ";
+static const char* mWarning = "\n> MIKOR2: Warning: ";
+static const char* mOut = "\n> MIKOR2: ";
 static const char* mOS = "> ";
 static const char* mDebug = "\n>> Debug: ";
 static const int dimI = 20;
@@ -31,6 +31,8 @@ class Mikor2
   public:
 
 	Mikor2 ( std::size_t );
+	void printParameters();
+	void firstOptimalA();
 	~Mikor2 () {};
 
 };
