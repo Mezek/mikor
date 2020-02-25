@@ -20,8 +20,14 @@ using namespace std;
 Mikor2::Mikor2 ( std::size_t K ) : vecX(K), vecAX(K), vecBX(K)
 {
 	numK = K;
+	dd = K;
+	pp = 1;
+	qq = 1;
 
 	cout << mOut << "K: " << numK << "\tN: " << numN << endl;
+	cout << mOut << "d: " << dd << endl;
+	cout << mOut << "p: " << pp << endl;
+	cout << mOut << "q: " << qq << endl;
 }
 
 void Mikor2::printParameters ()

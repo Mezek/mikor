@@ -23,6 +23,7 @@ class Mikor2
 {
   private:
 	int numK;
+	int dd, pp, qq;
 	std::vector<double> vecX, vecAX, vecBX;
 
   protected:
