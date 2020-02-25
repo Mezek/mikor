@@ -39,7 +39,7 @@ int main(int argc, char** argv)
 	myInt.setLimits(0.0001,0.9999);
 
 	myInt.Calculate();
-	//myInt.Datkor(true);
+	myInt.Datkor(true);
 	//myInt.makeFlag();
 
 	std::cout << "\nValue with constant: " << myInt.FCNvalue(0)*4.*powf(52.768,3) << std::endl;
