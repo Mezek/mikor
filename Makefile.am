@@ -5,7 +5,7 @@ SUBDIRS = src
 
 mikordocdir = ${prefix}/doc/mikor
 mikordoc_DATA = \
-	README\
+	README.md\
 	COPYING\
 	AUTHORS\
 	ChangeLog\

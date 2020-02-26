@@ -14,7 +14,8 @@ AM_CFLAGS =\
 bin_PROGRAMS = Mikor \
 	Test1 \
 	Test2 \
-	Test3
+	Test3 \
+	FindOptimalA
 
 Mikor_SOURCES =  \
 	main.cpp
@@ -31,4 +32,7 @@ Test2_SOURCES =  \
 
 Test3_SOURCES =  \
 	Test3.cpp
+
+FindOptimalA_SOURCES =  \
+	FindOptimalA.cpp
 
