@@ -49,23 +49,17 @@ double Mikor2::fraction (double x)
 	return f;
 }
 
+bool Mikor2::isPrime (int n)
+{
+	if (n < 2) return false; 
+	if (n = 2) return true; 
+	if (n % 2 == 0) return false;
+	for (int i=3; (i*i)<=n; i+=2) {
+		if(n % i == 0 ) return false;
+    }
+	return true;
+}
 /*
-def is_prime(n):
-    """
-    Check if n is prime number
-    :param n: number
-    :return: True/False
-    """
-    # if n in (2, 3, 5, 7, 11):  # special case small primes
-    #    return True
-    if n % 2 == 0 or n == 1:  # special case even numbers and 1
-        return False
-    for i in range(3, int(math.sqrt(n)) + 1, 2):
-        if n % i == 0:
-            return False
-    return True
-
-
 def n_prime(n):
     """
     Find prime p >= n
@@ -77,39 +71,6 @@ def n_prime(n):
         next_prime = next(filter(is_prime, count(next_prime)))
     return next_prime
 */
-
-/*
- *     def h_sum(self, upperb, z):
-        """
-        Summation in H(z) function without coefficient
-        :param upperb: upper bound of summation
-        :param z: polynomial parameter
-        :return: sum in H(z) function
-        """
-        s = self.dim_s
-        p = self.p_prime
-        a = np.ones(s)
-        sm_k = 0
-        zs = 1
-        for j in range(s):
-            a[j] = zs / p
-            zs = (zs*z) % p
-        for k in range(1, upperb + 1):
-            k_term = 1.
-            for l in range(s):
-                ent = fraction(k*a[l])
-                k_term = k_term*(1. - ent - ent)
-            sm_k = sm_k + k_term*k_term
-        return sm_k
-
-    def h_poly(self, z):
-        return pow(3, self.dim_s)/self.p_prime*self.h_sum(self.p_prime, z)
-
-    def h_poly_chet(self, z):
-        p = int((self.p_prime - 1)/2)
-        chet = pow(3, self.dim_s)/self.p_prime*(1. + 2.*self.h_sum(p, z))
-        return chet
-			*/
 
 double Mikor2::hSum (int upperb, int z)
 {

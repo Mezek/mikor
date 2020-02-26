@@ -33,6 +33,7 @@ class Mikor2
 	void setPprime ( int );
 	void printParameters();
 	double fraction ( double );
+	bool isPrime ( int );
 	double hSum ( int, int );
 	double hPoly ( int );
 	double hPolyChet ( int );

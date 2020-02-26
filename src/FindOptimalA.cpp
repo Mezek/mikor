@@ -21,7 +21,13 @@ int main(int argc, char** argv)
              [8191, 2228], [10007, 1870], [13001, 1864], [20011, 9432], [30011, 13604],
              [40009, 13130], [50021, 7255], [75011, 16449], [100003, 48778]],*/
 	
-	hoch.setPprime(8191);
+	int bX = 8191;
+	if (hoch.isPrime(bX)) {
+		hoch.setPprime(bX);
+	} else {
+		exit(EXIT_FAILURE);
+	}
+	
 	hoch.printParameters();
 	hoch.firstOptimalA();
 
