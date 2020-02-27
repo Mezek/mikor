@@ -6,6 +6,7 @@
 #include <cassert>
 #include <stdlib.h>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <ctime>
@@ -21,23 +22,56 @@ using namespace std;
 /// Set the number of variables of the integration K, maximum is 20.
 /// Set default parameter values.
 
+Mikor2::Mikor2 ()
+{
+	dimS = 1;
+	pPrime = 1;
+	qPrime = 1;
+	aX.resize(1);
+}
+
 Mikor2::Mikor2 ( std::size_t K ) : aX(K)
 {
-	dd = K;
+	dimS = K;
 	pPrime = 1;
 	qPrime = 1;
 }
 
+void Mikor2::setDimS (int n)
+{
+	dimS = n;
+	aX.resize(n);
+}
 
 void Mikor2::setPprime (int n)
 {
 	pPrime = n;
 }
 
+void Mikor2::setQprime (int n)
+{
+	qPrime = n;
+}
+
+int Mikor2::getDimS ()
+{
+	return dimS;
+}
+
+int Mikor2::getPprime ()
+{
+	return pPrime;
+}
+
+int Mikor2::getQprime ()
+{
+	return qPrime;
+}
+
 void Mikor2::printParameters ()
 {
 	cout << mOut << "Parameters" << endl;
-	cout << mOS << "d  = " << dd << endl;
+	cout << mOS << "d  = " << dimS << endl;
 	cout << mOS << "p  = " << pPrime << endl;
 	cout << mOS << "q  = " << qPrime << endl;
 }
@@ -52,25 +86,22 @@ double Mikor2::fraction (double x)
 bool Mikor2::isPrime (int n)
 {
 	if (n < 2) return false; 
-	if (n = 2) return true; 
+	if (n == 2) return true; 
 	if (n % 2 == 0) return false;
-	for (int i=3; (i*i)<=n; i+=2) {
+	for (int i = 3; (i*i) <= n; i += 2) {
 		if(n % i == 0 ) return false;
     }
 	return true;
 }
-/*
-def n_prime(n):
-    """
-    Find prime p >= n
-    :param n: Number of nodes
-    :return: prime p >= n
-    """
-    next_prime = n
-    while not is_prime(next_prime):
-        next_prime = next(filter(is_prime, count(next_prime)))
-    return next_prime
-*/
+
+int Mikor2::nextPrime (int n)
+{
+	int fol = n;
+	while (!this->isPrime(fol)) {
+		++fol;
+	}
+	return fol;
+}
 
 double Mikor2::hSum (int upperb, int z)
 {
@@ -97,18 +128,18 @@ double Mikor2::hSum (int upperb, int z)
 
 double Mikor2::hPoly (int z)
 {
-	double poly = pow(3, dd)/pPrime*this->hSum(pPrime, z);
+	double poly = pow(3, dimS)/pPrime*this->hSum(pPrime, z);
 	return poly;
 }
 
 double Mikor2::hPolyChet (int z)
 {
 	int p = (pPrime - 1)/2;
-	double chet = pow(3, dd)/pPrime*(1. + 2.*this->hSum(p, z));
+	double chet = pow(3, dimS)/pPrime*(1. + 2.*this->hSum(p, z));
 	return chet;
 }
 
-void Mikor2::firstOptimalA ()
+int Mikor2::firstOptimalA ()
 {
 	int upRange = (pPrime - 1)/2;
 	int optimalA = 0;
@@ -120,14 +151,11 @@ void Mikor2::firstOptimalA ()
 			optimalA = i;
 			optimalVal = hSum;
 		}
-		if ((i % 1000) == 0) {
+		/*if ((i % 1000) == 0) {
 			cout << i << ". iteration" << endl;
-		}
+		}*/
 	}
-	cout << mOS << "optimal a    = " << optimalA << endl;
-	cout << mOS << "optimal H(a) = " << optimalVal << endl;
+	cout << "optimal: a = " << optimalA 
+		 << ",\tH(a) = " << setprecision(10) << optimalVal << endl;
+	return optimalA;
 }
-
-/**
- * @todo Find optimal numbers.
- */

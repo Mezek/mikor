@@ -22,22 +22,29 @@ static const int dimI = 20;
 class Mikor2
 {
   private:
-	int dd, pPrime, qPrime;
+	int dimS, pPrime, qPrime;
 	std::vector<double> aX;
 
   protected:
 
   public:
 
+	Mikor2 ();
 	Mikor2 ( std::size_t );
+	void setDimS ( int );
 	void setPprime ( int );
+	void setQprime ( int );
+	int getDimS ();
+	int getPprime ();
+	int getQprime ();
 	void printParameters();
 	double fraction ( double );
 	bool isPrime ( int );
+	int nextPrime ( int );
 	double hSum ( int, int );
 	double hPoly ( int );
 	double hPolyChet ( int );
-	void firstOptimalA();
+	int firstOptimalA();
 	~Mikor2 () {};
 
 };
