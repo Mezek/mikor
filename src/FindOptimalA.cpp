@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 
 	/// Output
 	ofstream os;
-	os.open("dim10Aopt.dat");
+	os.open("dim3Aopt.dat");
 	os.precision(8);
 	os << "% Output of finding optimal value" << endl;	
 
@@ -29,9 +29,9 @@ int main(int argc, char** argv)
 	75011, 100003, 200003, 500009, 1000003, 2000003, 5000011};
 
 	int optA;
+	int bRs = bR.size();
 	os << "d = " << hoch.getDimS() << endl;
-	//for (int i = 0; i < bR.size(); i++) {
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < bRs; i++) {
 		if (hoch.isPrime(bR[i])) {
 			hoch.setPprime(bR[i]);
 			cout << "d = " << hoch.getDimS() << "\tp = " << hoch.getPprime() << endl;
