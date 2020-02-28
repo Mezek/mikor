@@ -15,6 +15,17 @@ int main(int argc, char** argv)
 	time ( &rawtime );
 	cout << "\n> Start of program: " << ctime ( &rawtime ) << endl;
 
+	vector<int> w1 {3, 23, 5, 5};
+	vector<int> w2 {3, 53, 17, 5};
+	vector<int> w3 {3, 101, 53, 5};
+	vector<vector<int>> W3 {w1, w2, w3};
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 4; j++) {
+			cout << W3[i][j] << endl;
+		}
+	}
+/*
 	/// Output
 	ofstream os;
 	os.open("checkAopt.dat");
@@ -42,7 +53,7 @@ int main(int argc, char** argv)
 			exit(EXIT_FAILURE);
 		}
 	}
-	os.close();
+	os.close();*/
 	
 	time ( &rawtime );
 	cout << "\n\n> End of program:   " << ctime ( &rawtime ) << endl;
