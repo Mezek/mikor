@@ -9,51 +9,78 @@
 
 using namespace std;
 
+template <typename T> int sgn(T val) {
+    return (T(0) < val) - (val < T(0));
+}
+
+char cSign (double n) {
+	char s = '0';
+	if (n > 0) { s = '+'; };
+	if (n < 0) { s = '-'; };
+	return s;
+}
+
 int main(int argc, char** argv)
 {
 	time_t rawtime;
 	time ( &rawtime );
 	cout << "\n> Start of program: " << ctime ( &rawtime ) << endl;
 
-	vector<int> w1 {3, 23, 5, 5};
-	vector<int> w2 {3, 53, 17, 5};
-	vector<int> w3 {3, 101, 53, 5};
-	vector<vector<int>> W3 {w1, w2, w3};
+	vector<vector<int>> W3 {{3, 23, 5, 8},
+		{3, 53, 17, 17},
+		{3, 101, 53, 40},
+		{3, 151, 20, 20},
+		{3, 307, 75, 75},
+		{3, 523, 78, 78},
+		{3, 829, 116, 116},
+		{3, 1259, 433, 433},
+		{3, 2129, 359, 937},
+		{3, 3001, 276, 276},
+		{3, 4001, 722, 722},
+		{3, 5003, 1476,1476},
+		{3, 6007, 592, 592},
+		{3, 8191, 739, 739},
+		{3, 10007, 544, 544},
+		{3, 13001, 2135, 4969},
+		{3, 20011, 2759, 4104},
+		{3, 30011, 2023, 2326},
+		{3, 40009, 2979, 16592},
+		{3, 50021, 3483, 12962},
+		{3, 75011, 7623, 14018},
+		{3, 100003, 6697, 13758},
+		{3, 200003, 19477, 95498},
+		{3, 500009, 55279, 33606},
+		{3, 1000003, 90347, 441796},
+		{3, 2000003, 191421, 482047},
+		{3, 5000011, 613511, 2206047}
+	};
+	double optV;
 
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 4; j++) {
-			cout << W3[i][j] << endl;
+	Mikor2 bulli;
+	bulli.setDimS(W3[0][0]);
+	cout << "Dimension: " << W3[0][0] << endl;
+	
+	for (int i = 0; i < W3.size(); i++) {
+		bulli.setPprime(W3[i][1]);
+		double z = W3[i][2];
+		double a = bulli.hPolyChet(z);
+		cout << "[" << setprecision(10);
+		cout.width(9);
+		cout << W3[i][1] << "]\t";
+		cout << a << " ";
+		int ws = W3[i].size();
+		for (int j = 2; j < ws; j++) {
+			z = W3[i][j];
+			double b = bulli.hPolyChet(z);
+			cout << "\t";
+			cout.width(10);
+			cout << setprecision(9) << z 
+				<< " (" << cSign(b - a) 
+				//<< " / " << (b - a) 
+				<< ") ";
 		}
+		cout << endl;
 	}
-/*
-	/// Output
-	ofstream os;
-	os.open("checkAopt.dat");
-	os.precision(8);
-	os << "% Output of finding optimal value" << endl;	
-
-	Mikor2 hoch;
-
-	hoch.setDimS(3);
-	vector<int> bR {23, 53, 101, 151, 307, 523, 829, 1259, 2129, 3001,
-	4001, 5003, 6007, 8191, 10007, 13001, 20011, 30011, 40009, 50021,
-	75011, 100003, 200003, 500009, 1000003, 2000003, 5000011};
-
-	int optA;
-	int bRs = bR.size();
-	os << "d = " << hoch.getDimS() << endl;
-	for (int i = 0; i < 5; i++) {
-		if (hoch.isPrime(bR[i])) {
-			hoch.setPprime(bR[i]);
-			cout << "d = " << hoch.getDimS() << "\tp = " << hoch.getPprime() << endl;
-			optA = hoch.firstOptimalA();
-			os << "[" << hoch.getPprime() << ", " << optA << "], " << endl;
-		} else {
-			cout << mError << bR[i] << " is not prime!" << endl;
-			exit(EXIT_FAILURE);
-		}
-	}
-	os.close();*/
 	
 	time ( &rawtime );
 	cout << "\n\n> End of program:   " << ctime ( &rawtime ) << endl;

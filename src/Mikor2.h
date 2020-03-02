@@ -45,7 +45,6 @@ class Mikor2
 	double hPoly ( int );
 	double hPolyChet ( int );
 	int firstOptimalA();
-	//void checkValues();
 	~Mikor2 () {};
 
 };
