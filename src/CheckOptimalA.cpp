@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 	time ( &rawtime );
 	cout << "\n> Start of program: " << ctime ( &rawtime ) << endl;
 
-	vector<vector<int>> Wx3 {{3, 23, 5, 8, 3},
+	vector<vector<int>> W {{3, 23, 5, 8, 3},
 		{3, 53, 17, 17, 25},
 		{3, 101, 53, 40},
 		{3, 151, 20, 20},
@@ -64,7 +64,7 @@ int main(int argc, char** argv)
 		{3, 5000011, 613511, 2206047}
 	};
 
-	vector<vector<int>> W {{4, 23, 5, 5},
+	vector<vector<int>> Wx4 {{4, 23, 5, 5},
 		{4, 53, 31, 12},
 		{4, 101, 15, 27},
 		{4, 151, 22, 48},
