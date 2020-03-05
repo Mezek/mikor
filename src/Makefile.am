@@ -16,7 +16,8 @@ bin_PROGRAMS = Mikor \
 	Test2 \
 	Test3 \
 	FindOptimalA \
-	CheckOptimalA
+	CheckOptimalA \
+	DebugOptimalA
 
 Mikor_SOURCES =  \
 	main.cpp
@@ -39,4 +40,7 @@ FindOptimalA_SOURCES =  \
 
 CheckOptimalA_SOURCES =  \
 	CheckOptimalA.cpp
+
+DebugOptimalA_SOURCES =  \
+	DebugOptimalA.cpp
 

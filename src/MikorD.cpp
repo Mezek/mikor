@@ -80,6 +80,7 @@ double Mikor2::fraction (double x)
 {
 	double f, p;
 	f = modf(x, &p);
+	//if ( f > 1. ) { cout << mError << f << endl; }
 	return f;
 }
 
@@ -112,30 +113,38 @@ double Mikor2::hSum (int upperb, int z)
 	double sum = 0.;
 	long int zs = 1;
 	for (int i = 0; i < sizeA; ++i) {
-		aX[i] = (double)zs / (double)pPrime;
+		aX[i] = (double)zs/(double)pPrime;
+		//cout << mOS << i << " zs = " << zs << " " << (z*zs) << endl;
 		zs = (zs*z) % pPrime;
+		if ( aX[i] < 0. ) { cout << mError << i << " " << zs*z << " " << aX[i] << endl; }
 	}
 	for (int i = 0; i < upperb; ++i) {
 		double kterm = 1.;
 		for (int j = 0; j < sizeA; ++j) {
 			double ent = this->fraction((i + 1)*aX[j]);
+			double dva = 1. - ent - ent;
+			//if ( aX[j] < 0. ) { cout << mError << i << " " << aX[j] << endl; }
+			//if ( ent < 0. ) { cout << mError << ent << " " << dva << endl; }
+			//if ( dva > 1. ) { cout << mError << ent << " " << dva << endl; }
 			kterm = kterm*(1. - ent - ent);
 		}
 		sum = sum + kterm*kterm;
+		//if ((sum > 19000.) && (sum < 20000.)) {cout << i << " " << sum << " " << kterm << endl;}
 	}
 	return sum;
 }
 
 double Mikor2::hPoly (int z)
 {
-	double poly = pow(3, dimS)/pPrime*this->hSum(pPrime, z);
+	double poly = pow(3., dimS)/pPrime*this->hSum(pPrime, z);
 	return poly;
 }
 
 double Mikor2::hPolyChet (int z)
 {
 	int p = (pPrime - 1)/2;
-	double chet = pow(3, dimS)/pPrime*(1. + 2.*this->hSum(p, z));
+	double chet = pow(3., dimS)/pPrime*(1. + 2.*this->hSum(p, z));
+	//cout << "\n" << mOS << pow(3., dimS)/pPrime << " " << this->hSum(p,z) << endl;
 	return chet;
 }
 
