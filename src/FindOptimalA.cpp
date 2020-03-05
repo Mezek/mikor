@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 	int optA;
 	int bRs = bR.size();
 	os << "d = " << hoch.getDimS() << endl;
-	for (int i = 0; i < bRs; i++) {
+	for (int i = 26; i < bRs; i++) {
 		if (hoch.isPrime(bR[i])) {
 			hoch.setPprime(bR[i]);
 			cout << "d = " << hoch.getDimS() << "\tp = " << hoch.getPprime() << endl;
