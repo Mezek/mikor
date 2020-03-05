@@ -4,6 +4,7 @@
  */
 
 #include <iostream>
+#include <limits.h>
 
 #include "MikorD.cpp"
 
@@ -59,8 +60,6 @@ int main(int argc, char** argv)
 		cout << "      " << V[i] << endl;
 		cout << "H   = " << secret.hPoly(V[i]) << endl;
 		cout << "H_c = " << secret.hPolyChet(V[i]) << endl;
-
-		//cout << secret.fraction((1000003 - 1)/2*0.59*(1000003 - 1)/2) << endl;
 	}
 	
 	time ( &rawtime );

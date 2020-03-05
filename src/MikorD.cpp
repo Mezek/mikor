@@ -111,11 +111,12 @@ double Mikor2::hSum (int upperb, int z)
 		aX[i] = 1.;
 	}
 	double sum = 0.;
-	int zs = 1;
+	long int zs = 1;
 	for (int i = 0; i < sizeA; ++i) {
 		aX[i] = (double)zs/(double)pPrime;
+		//cout << mOS << i << " zs = " << zs << " " << (z*zs) << endl;
 		zs = (zs*z) % pPrime;
-		if ( aX[i] < 0. ) { cout << mError << i << " " << aX[i] << endl; }
+		if ( aX[i] < 0. ) { cout << mError << i << " " << zs*z << " " << aX[i] << endl; }
 	}
 	for (int i = 0; i < upperb; ++i) {
 		double kterm = 1.;
