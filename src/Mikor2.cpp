@@ -105,20 +105,20 @@ int Mikor2::nextPrime (int n)
 
 double Mikor2::hSum (int upperb, int z)
 {
-	int sizeA = aX.size();
+	int sizeA = dimS;
 	for (int i = 0; i < sizeA; ++i) {
 		aX[i] = 1.;
 	}
 	double sum = 0.;
-	int zs = 1;
+	long int zs = 1;
 	for (int i = 0; i < sizeA; ++i) {
-		aX[i] = (double)zs/pPrime;
+		aX[i] = (double)zs / (double)pPrime;
 		zs = (zs*z) % pPrime;
 	}
 	for (int i = 0; i < upperb; ++i) {
 		double kterm = 1.;
 		for (int j = 0; j < sizeA; ++j) {
-			double ent = this->fraction(i*aX[j]);
+			double ent = this->fraction((i + 1)*aX[j]);
 			kterm = kterm*(1. - ent - ent);
 		}
 		sum = sum + kterm*kterm;
@@ -143,7 +143,7 @@ int Mikor2::firstOptimalA ()
 {
 	int upRange = (pPrime - 1)/2;
 	int optimalA = 0;
-	double optimalVal = 1e+18;
+	double optimalVal = 1.e+18;
 	double hSum = 0.;
 	for (int i = 1; i < (upRange + 1); ++i) {
 		hSum = this->hPolyChet(i);

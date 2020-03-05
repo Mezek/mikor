@@ -59,7 +59,7 @@ int main(int argc, char** argv)
 		{3, 100003, 6697, 13758},
 		{3, 200003, 19477, 95498, 79253},
 		{3, 500009, 55279, 33606},
-		{3, 1000003, 90347, 441796, 342972},
+		{3, 1000003, 90347, 342972},
 		{3, 2000003, 191421, 482047},
 		{3, 5000011, 613511, 2206047}
 	};
@@ -341,7 +341,7 @@ int main(int argc, char** argv)
 			double b = bulli.hPolyChet(z);
 			cout << "\t";
 			cout.width(10);
-			cout << setprecision(9) << z 
+			cout << setprecision(10) << z 
 				<< " (" << blue << cSign(b - a) << reset
 				//<< " / " << setprecision(10) << (b - a)
 				<< " / " << b //
