@@ -44,3 +44,5 @@ CheckOptimalA_SOURCES =  \
 DebugOptimalA_SOURCES =  \
 	DebugOptimalA.cpp
 
+clean:
+	rm -r $(bin_PROGRAMS)
