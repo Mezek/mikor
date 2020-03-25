@@ -33,7 +33,8 @@ int main(int argc, char** argv)
 {
 	time_t rawtime;
 	time ( &rawtime );
-	cout << "\n> Start of program: " << ctime ( &rawtime ) << endl;
+	cout << "\n> Program : " << argv[0] << endl;
+	cout << "> Start   : " << ctime ( &rawtime ) << endl;
 
 	vector<vector<int>> Wx3 {{3, 23, 5, 8, 3},
 		{3, 53, 17, 17, 25},
@@ -317,10 +318,10 @@ int main(int argc, char** argv)
 		{19, 5000011, 478471, 0}
 	};
 
-	vector<vector<int>> Wx20 {{20, 500009, 61353, 180304},
+	vector<vector<int>> W {{20, 500009, 61353, 180304},
 		{20, 1000003, 106233, 275605},
 		{20, 2000003, 191421, 269294},
-		{20, 5000011, 478471, 0}
+		{20, 5000011, 478471, 791353}
 	};
 
 	double optV;
@@ -354,7 +355,7 @@ int main(int argc, char** argv)
 	}
 	
 	time ( &rawtime );
-	cout << "\n\n> End of program:   " << ctime ( &rawtime ) << endl;
+	cout << "\n> End     : " << ctime ( &rawtime ) << endl;
 
 	return EXIT_SUCCESS;
 }
