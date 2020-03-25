@@ -1,5 +1,6 @@
 /**
  * @brief		Class file for numerical integration by the Korobov's method.
+ *              Use for debugging purposes.
  * @author		Erik Bartoš
  */
 

@@ -159,3 +159,8 @@ int Mikor2::firstOptimalA ()
 		 << ",\tH(a) = " << setprecision(10) << optimalVal << endl;
 	return optimalA;
 }
+
+int Mikor2::firstOptimalB (int a)
+{
+	return a;
+}
