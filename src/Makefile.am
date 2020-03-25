@@ -17,7 +17,9 @@ bin_PROGRAMS = Mikor \
 	Test3 \
 	FindOptimalA \
 	CheckOptimalA \
-	DebugOptimalA
+	DebugOptimalA \
+	FindOptimalC \
+	CheckOptimalC
 
 Mikor_SOURCES =  \
 	main.cpp
@@ -44,3 +46,11 @@ CheckOptimalA_SOURCES =  \
 DebugOptimalA_SOURCES =  \
 	DebugOptimalA.cpp
 
+FindOptimalC_SOURCES =  \
+	FindOptimalC.cpp
+
+CheckOptimalC_SOURCES =  \
+	CheckOptimalC.cpp
+
+clean:
+	rm -r $(bin_PROGRAMS)

@@ -23,7 +23,7 @@ class Mikor2
 {
   private:
 	int dimS, pPrime, qPrime;
-	std::vector<double> aX;
+	std::vector<double> aX, bX;
 
   protected:
 
@@ -45,6 +45,7 @@ class Mikor2
 	double hPoly ( int );
 	double hPolyChet ( int );
 	int firstOptimalA();
+	int firstOptimalB( int );
 	~Mikor2 () {};
 
 };

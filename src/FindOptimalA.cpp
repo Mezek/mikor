@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 			optA = hoch.firstOptimalA();
 			os << "[" << hoch.getPprime() << ", " << optA << "], " << endl;
 		} else {
-			cout << mError << bR[i] << " is not prime!" << endl;
+			cout << mError << bR[i] << " is not the prime!" << endl;
 			exit(EXIT_FAILURE);
 		}
 	}
