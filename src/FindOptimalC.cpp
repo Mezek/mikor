@@ -48,6 +48,7 @@ int main(int argc, char** argv)
 		}
 		mroch.setPprime(Z[i][0]);
 		mroch.setQprime(Z[i][1]);
+		mroch.setNNodes();
 		cout << "d = " << mroch.getDimS() 
 			<< "\tp = " << mroch.getPprime()
 			<< "\tq = " << mroch.getQprime() << endl;
