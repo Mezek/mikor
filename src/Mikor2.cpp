@@ -172,17 +172,16 @@ int Mikor2::firstOptimalA ()
 	return optimalA;
 }
 
-double Mikor2::hTildeSum ( int z, std::vector<int> aArg) {
+double Mikor2::hTildeSum ( int upperb, int z, std::vector<int> aArg) {
 	for (int i = 0; i < dimS; i++) {
 		bX[i] = 1.;
 	}
 	double smk = 0.;
 	long int zs = 1;
 	for (int i = 0; i < dimS; i++) {
-		bX[i] = (double)zs / (double)qPrime + aArg[i] / pPrime;
+		bX[i] = (double)zs / (double)qPrime + (double)aArg[i] / (double)pPrime;
 		zs = (zs*z) % qPrime;
 	}
-	int upperb = nNodes;
 	for (int i = 0; i < upperb; i++) {
 		double kterm = 1.;
 		for (int j = 0; j < dimS; j++) {
@@ -196,7 +195,7 @@ double Mikor2::hTildeSum ( int z, std::vector<int> aArg) {
 
 double Mikor2::hTildePoly (int z, vector<int> aArg)
 {
-	double poly = pow(3, dimS)/nNodes*this->hTildeSum(z, aArg);
+	double poly = pow(3, dimS)/nNodes*this->hTildeSum(nNodes, z, aArg);
 	return poly;
 }
 
@@ -208,6 +207,10 @@ int Mikor2::firstOptimalB (int optimalA)
 	for (int i = 2; i < dimS; i++) {
 		calcA[i] = calcA[i - 1]*optimalA % pPrime;
 	}
+	/*for (int i = 0; i < dimS; i++) {
+		cout << calcA[i] << " ";
+	}
+	cout << endl;*/
 	int optimalB = 0;
 	double optimalVal = 1.e+28;
 	double hSum = 0.;
@@ -219,7 +222,7 @@ int Mikor2::firstOptimalB (int optimalA)
 		}
 	}
 	cout << "optimal: b = " << optimalB 
-		 << ",\tH(b) = " << setprecision(10) << optimalVal << endl;
+		 << ",\tH(b)-1 = " << setprecision(10) << optimalVal - 1. << endl;
 
 	return optimalB;
 }

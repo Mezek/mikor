@@ -47,7 +47,7 @@ class Mikor2
 	double hSum ( int, int );
 	double hPoly ( int );
 	double hPolyChet ( int );
-	double hTildeSum ( int, std::vector<int> );
+	double hTildeSum ( int, int, std::vector<int> );
 	double hTildePoly ( int, std::vector<int> );
 	int firstOptimalA();
 	int firstOptimalB( int );
