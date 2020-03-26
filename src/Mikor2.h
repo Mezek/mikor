@@ -23,6 +23,7 @@ class Mikor2
 {
   private:
 	int dimS, pPrime, qPrime;
+	long int nNodes;
 	std::vector<double> aX, bX;
 
   protected:
@@ -34,9 +35,11 @@ class Mikor2
 	void setDimS ( int );
 	void setPprime ( int );
 	void setQprime ( int );
+	void setNNodes ();
 	int getDimS ();
 	int getPprime ();
 	int getQprime ();
+	int getNNodes ();
 	void printParameters();
 	double fraction ( double );
 	bool isPrime ( int );
@@ -44,6 +47,8 @@ class Mikor2
 	double hSum ( int, int );
 	double hPoly ( int );
 	double hPolyChet ( int );
+	double hTildeSum ( int, int, std::vector<int> );
+	double hTildePoly ( int, std::vector<int> );
 	int firstOptimalA();
 	int firstOptimalB( int );
 	~Mikor2 () {};

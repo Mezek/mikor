@@ -28,9 +28,10 @@ Mikor2::Mikor2 ()
 	pPrime = 1;
 	qPrime = 1;
 	aX.resize(1);
+	bX.resize(1);
 }
 
-Mikor2::Mikor2 ( std::size_t K ) : aX(K)
+Mikor2::Mikor2 ( std::size_t K ) : aX(K), bX(K)
 {
 	dimS = K;
 	pPrime = 1;
@@ -41,6 +42,7 @@ void Mikor2::setDimS (int n)
 {
 	dimS = n;
 	aX.resize(n);
+	bX.resize(n);
 }
 
 void Mikor2::setPprime (int n)
@@ -51,6 +53,11 @@ void Mikor2::setPprime (int n)
 void Mikor2::setQprime (int n)
 {
 	qPrime = n;
+}
+
+void Mikor2::setNNodes ()
+{
+	nNodes = pPrime*qPrime;
 }
 
 int Mikor2::getDimS ()
@@ -66,6 +73,11 @@ int Mikor2::getPprime ()
 int Mikor2::getQprime ()
 {
 	return qPrime;
+}
+
+int Mikor2::getNNodes ()
+{
+	return nNodes;
 }
 
 void Mikor2::printParameters ()
@@ -106,18 +118,18 @@ int Mikor2::nextPrime (int n)
 double Mikor2::hSum (int upperb, int z)
 {
 	int sizeA = dimS;
-	for (int i = 0; i < sizeA; ++i) {
+	for (int i = 0; i < sizeA; i++) {
 		aX[i] = 1.;
 	}
 	double sum = 0.;
 	long int zs = 1;
-	for (int i = 0; i < sizeA; ++i) {
+	for (int i = 0; i < sizeA; i++) {
 		aX[i] = (double)zs / (double)pPrime;
 		zs = (zs*z) % pPrime;
 	}
-	for (int i = 0; i < upperb; ++i) {
+	for (int i = 0; i < upperb; i++) {
 		double kterm = 1.;
-		for (int j = 0; j < sizeA; ++j) {
+		for (int j = 0; j < sizeA; j++) {
 			double ent = this->fraction((i + 1)*aX[j]);
 			kterm = kterm*(1. - ent - ent);
 		}
@@ -145,7 +157,7 @@ int Mikor2::firstOptimalA ()
 	int optimalA = 0;
 	double optimalVal = 1.e+18;
 	double hSum = 0.;
-	for (int i = 1; i < (upRange + 1); ++i) {
+	for (int i = 1; i < (upRange + 1); i++) {
 		hSum = this->hPolyChet(i);
 		if (hSum < optimalVal) {
 			optimalA = i;
@@ -160,7 +172,57 @@ int Mikor2::firstOptimalA ()
 	return optimalA;
 }
 
-int Mikor2::firstOptimalB (int a)
+double Mikor2::hTildeSum ( int upperb, int z, std::vector<int> aArg) {
+	for (int i = 0; i < dimS; i++) {
+		bX[i] = 1.;
+	}
+	double smk = 0.;
+	long int zs = 1;
+	for (int i = 0; i < dimS; i++) {
+		bX[i] = (double)zs / (double)qPrime + (double)aArg[i] / (double)pPrime;
+		zs = (zs*z) % qPrime;
+	}
+	for (int i = 0; i < upperb; i++) {
+		double kterm = 1.;
+		for (int j = 0; j < dimS; j++) {
+			double ent = this->fraction((i + 1)*bX[j]);
+			kterm = kterm*(1. - ent - ent);
+		}
+		smk = smk + kterm*kterm;
+	}
+	return smk;
+}
+
+double Mikor2::hTildePoly (int z, vector<int> aArg)
 {
-	return a;
+	double poly = pow(3, dimS)/nNodes*this->hTildeSum(nNodes, z, aArg);
+	return poly;
+}
+
+int Mikor2::firstOptimalB (int optimalA)
+{
+	vector<int> calcA(dimS);
+	calcA[0] = 1;
+	calcA[1] = optimalA;
+	for (int i = 2; i < dimS; i++) {
+		calcA[i] = calcA[i - 1]*optimalA % pPrime;
+	}
+	/*for (int i = 0; i < dimS; i++) {
+		cout << calcA[i] << " ";
+	}
+	cout << endl;*/
+	int optimalB = 0;
+	double optimalVal = 1.e+28;
+	double hSum = 0.;
+	for (int i = 1; i < qPrime; i++) {
+		hSum = this->hTildePoly(i, calcA);
+		if (hSum < optimalVal) {
+			optimalB = i;
+			optimalVal = hSum;
+		}
+	}
+	cout << "optimal: b = " << optimalB 
+		 << ",\tH(b)-1 = " << setprecision(10) << optimalVal - 1. << endl;
+
+	return optimalB;
 }
