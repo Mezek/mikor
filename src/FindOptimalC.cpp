@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 
 	/// Output
 	ofstream os;
-	os.open("dim20Copt.dat");
+	os.open("dim10Copt.dat");
 	os.precision(8);
 	os << "% Output of finding optimal value" << endl;	
 
@@ -34,8 +34,8 @@ int main(int argc, char** argv)
     {30011, 173, 8883, 78}, {40009, 199, 15619, 159}
 	};
 
-	vector<vector<int>> Z {{20},
-	{50021, 223, 2, 131},
+	vector<vector<int>> Z {{10},
+	{3001, 53}, {4001, 53}, {5003, 61}, {6007, 79}
 	};
 
 	Mikor2 mroch;
@@ -60,7 +60,8 @@ int main(int argc, char** argv)
 		//	<< "\tp = " << mroch.getPprime() << ","
 		//	<< "\tq = " << mroch.getQprime() << endl;
 
-		optA = Z[i][2];
+		// optA = Z[i][2];
+		optA = mroch.firstOptimalA();
 		optB = mroch.firstOptimalB(optA);
 		os << "[" 
 			<< mroch.getPprime() << ", " 

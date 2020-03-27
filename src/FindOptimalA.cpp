@@ -17,21 +17,23 @@ int main(int argc, char** argv)
 
 	/// Output
 	ofstream os;
-	os.open("dim9Aopt.dat");
+	os.open("dim10Aopt.dat");
 	os.precision(8);
 	os << "% Output of finding optimal value" << endl;	
 
 	Mikor2 hoch;
 
-	hoch.setDimS(9);
-	vector<int> bR {23, 53, 101, 151, 307, 523, 829, 1259, 2129, 3001,
+	hoch.setDimS(10);
+	vector<int> bRx {23, 53, 101, 151, 307, 523, 829, 1259, 2129, 3001,
 	4001, 5003, 6007, 8191, 10007, 13001, 20011, 30011, 40009, 50021,
 	75011, 100003, 200003, 500009, 1000003, 2000003, 5000011};
+
+	vector<int> bR {3001, 4001, 5003, 6007};
 
 	int optA;
 	int bRs = bR.size();
 	os << "d = " << hoch.getDimS() << endl;
-	for (int i = 22; i < bRs; i++) {
+	for (int i = 0; i < bRs; i++) {
 		if (hoch.isPrime(bR[i])) {
 			hoch.setPprime(bR[i]);
 			cout << "d = " << hoch.getDimS() << "\tp = " << hoch.getPprime() << endl;
