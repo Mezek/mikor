@@ -17,18 +17,18 @@ int main(int argc, char** argv)
 
 	/// Output
 	ofstream os;
-	os.open("dim10Aopt.dat");
+	os.open("dim3Aopt.dat");
 	os.precision(8);
 	os << "% Output of finding optimal value" << endl;	
 
 	Mikor2 hoch;
 
-	hoch.setDimS(10);
+	hoch.setDimS(3);
 	vector<int> bRx {23, 53, 101, 151, 307, 523, 829, 1259, 2129, 3001,
 	4001, 5003, 6007, 8191, 10007, 13001, 20011, 30011, 40009, 50021,
 	75011, 100003, 200003, 500009, 1000003, 2000003, 5000011};
 
-	vector<int> bR {3001, 4001, 5003, 6007};
+	vector<int> bR {100003, 200003, 300007, 400009, 500009, 700001};
 
 	int optA;
 	int bRs = bR.size();
